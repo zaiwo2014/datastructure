@@ -1,4 +1,4 @@
-package com.leung;
+package com.leung.二分法;
 
 import java.util.Arrays;
 
