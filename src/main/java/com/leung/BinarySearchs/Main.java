@@ -1,4 +1,4 @@
-package com.leung.二分法;
+package com.leung.BinarySearchs;
 
 import java.util.Arrays;
 
