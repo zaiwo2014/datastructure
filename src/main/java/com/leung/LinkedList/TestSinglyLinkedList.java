@@ -1,10 +1,9 @@
 package com.leung.LinkedList;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Stream;
 
 /**
  * @title:Test
@@ -17,8 +16,8 @@ import java.util.List;
 public class TestSinglyLinkedList {
 
     @Test
-    public void test(){
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+    public void test() {
+        SinglyLinkedListSentinel singlyLinkedList = new SinglyLinkedListSentinel();
         singlyLinkedList.addLast(1);
         singlyLinkedList.addLast(2);
         singlyLinkedList.addLast(3);
@@ -26,4 +25,42 @@ public class TestSinglyLinkedList {
         singlyLinkedList.remove(3);
         singlyLinkedList.loopList(System.out::println);
     }
+
+    @Test
+    public void test2() {
+        SinglyLinkedListSentinel integers = new SinglyLinkedListSentinel();
+        integers.addLast(1);
+        integers.addLast(2);
+        integers.addLast(3);
+        integers.removeFirst();
+        integers.loopList(System.out::println);
+    }
+
+    @Test
+    public void test3() {
+        DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+        doublyLinkedList.addFirst(11);
+        doublyLinkedList.addFirst(12);
+        doublyLinkedList.addFirst(13);
+        doublyLinkedList.addLast(14);
+
+        for (Integer value : doublyLinkedList) {
+            System.out.println(value);
+        }
+
+    }
+
+    @Test
+    public void test4() {
+        DoublyLinkedCircularList list = new DoublyLinkedCircularList();
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.remove(0);
+        list.addLast(100);
+        list.insert(1000, 2);
+        list.loopWithRecursion();
+    }
+
+
 }
