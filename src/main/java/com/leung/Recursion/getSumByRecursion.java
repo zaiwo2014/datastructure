@@ -16,5 +16,7 @@ public class getSumByRecursion {
         
     }
     
-    
+    public static Long solution() {
+        
+    }
 }

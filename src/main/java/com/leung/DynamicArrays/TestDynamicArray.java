@@ -1,8 +1,14 @@
 package com.leung.DynamicArrays;
 
 
+
+
+
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import java.util.Iterator;
 
 /**
  * @title:TestDynamicArray
@@ -28,4 +34,17 @@ public class TestDynamicArray {
 
     }
 
+    @Test
+    @DisplayName("动态数组")
+    public void test2() {
+        DynamicArrayAgain dynamicArrayAgain = new DynamicArrayAgain();
+        dynamicArrayAgain.add(1);
+        dynamicArrayAgain.add(2);
+        dynamicArrayAgain.add(3);
+        dynamicArrayAgain.add(4);
+        Iterator<Integer> iterator = dynamicArrayAgain.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
 }
