@@ -1,6 +1,4 @@
-package com.leung.Recursion;
-
-import org.junit.jupiter.api.Test;
+package com.leung.recursion;
 
 /**
  * @author 丨一

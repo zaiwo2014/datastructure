@@ -1,10 +1,7 @@
-package com.leung.LinkedList;
+package com.leung.linkedList;
 
-import com.leung.DynamicArrays.DynamicArrayAgain;
+import com.leung.dynamicArrays.DynamicArrayAgain;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 /**
  * @title:Test

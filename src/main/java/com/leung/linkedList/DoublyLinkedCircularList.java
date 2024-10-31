@@ -1,6 +1,5 @@
-package com.leung.LinkedList;
+package com.leung.linkedList;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.stream.Stream;

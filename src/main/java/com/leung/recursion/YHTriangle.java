@@ -1,8 +1,6 @@
-package com.leung.Recursion;
+package com.leung.recursion;
 
 import org.junit.jupiter.api.Test;
-
-import javax.sound.midi.Soundbank;
 
 /**
  * @title YHTriangle

@@ -1,4 +1,4 @@
-package com.leung.Recursion;
+package com.leung.recursion;
 
 import java.util.LinkedList;
 

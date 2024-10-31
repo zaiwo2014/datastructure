@@ -1,4 +1,4 @@
-package com.leung.BinarySearchs;
+package com.leung.binarySearchs;
 
 import java.util.Arrays;
 

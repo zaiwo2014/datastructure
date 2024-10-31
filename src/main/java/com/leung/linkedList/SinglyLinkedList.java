@@ -1,4 +1,4 @@
-package com.leung.LinkedList;
+package com.leung.linkedList;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -11,11 +11,11 @@ import java.util.function.Consumer;
  * @Version: 1.0
  */
 
-public class SinglyLinkedListSentinel implements Iterable<Integer> {
+public class SinglyLinkedList implements Iterable<Integer> {
     //特点:存储不连续,通过指针进行数据的串联
 
-    //1.头结点(带哨兵的单向链表)
-    private Node head = new Node(520, null);
+    //1.头结点
+    private Node head;
 
     /**
      * 新增节点,采用头插法
@@ -23,7 +23,14 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
      * @param value 需要插入的值
      */
     public void addFirst(int value) {
-        head.next = new Node(value, head.next);
+        //1.链表为空,将头结点指向第一个节点
+//        if (head == null){
+//            head = new Node(value, null);
+//        }else {
+//            //2.链表非空(头插法)
+//            head = new Node(value, head);
+//        }
+        head = new Node(value, head); //头插法,优化版本
     }
 
     /**
@@ -31,7 +38,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
      */
     public void addLast(int value) {
         //找到尾部指针
-        if (head.next == null) {
+        if (head == null) {
             addFirst(value);
         } else {
             Node last = findLast();
@@ -40,7 +47,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     }
 
     private Node findLast() {
-        Node last = head.next;
+        Node last = head;
         while (last.next != null) {
             last = last.next;
         }
@@ -51,7 +58,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
      * 遍历算法
      */
     public void loopList(Consumer<Integer> consumer) {
-        Node point = head.next;
+        Node point = head;
         while (point != null) {
             consumer.accept(point.value);
             point = point.next;
@@ -64,7 +71,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<Integer>() {
-            Node p = head.next;
+            Node p = head;
 
             /**
              * 存在后续节点时,返回true,否则返回false
@@ -102,7 +109,7 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
      * 获取指定下标的节点
      */
     private Node fineIndex(int index) {
-        int flag = -1;
+        int flag = 0;
         for (Node p = head; p != null; p = p.next, flag++) {
             if (flag == index) {
                 return p;
@@ -111,38 +118,51 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
         return null;
     }
 
-
     /**
      * 指定位置插入元素,原索引位置的元素往后移一个位置
      */
     public void insertByIndex(int value, int index) {
-        Node preNode = fineIndex(index - 1);
-        if (preNode != null) {
-            preNode.next = new Node(value, preNode.next);
-        } else throw new IllegalArgumentException(
-                String.format("index [%d] 不合法%n", index));
+        //索引位置为0(直接采用头插法)
+        if (index == 0) {
+            addFirst(value);
+        } else {
+            //插入点在中间,执行打断逻辑
+            Node preNode = fineIndex(index - 1);
+            if (preNode != null) {
+                preNode.next = new Node(value, preNode.next);
+            } else throw new IllegalArgumentException(
+                    String.format("index [%d] 不合法%n", index));
+        }
     }
 
     /**
      * 删除头节点
      */
     public void removeFirst() {
-        remove(0);
+        if (head != null) {
+            head = head.next;
+        } else {
+            throw new IllegalArgumentException("链表为空");
+        }
     }
 
     /**
      * 按索引删除
      */
     public void remove(int index) {
-        Node preNode = fineIndex(index - 1);
-        if (preNode == null) {
-            throw new IllegalArgumentException("不合法的索引");
+        if (index == 0) {
+            removeFirst();
         } else {
-            Node removeNode = preNode.next;
-            if (removeNode == null) {
+            Node preNode = fineIndex(index - 1);
+            if (preNode == null) {
                 throw new IllegalArgumentException("不合法的索引");
             } else {
-                preNode.next = removeNode.next;
+                Node removeNode = preNode.next;
+                if (removeNode == null) {
+                    throw new IllegalArgumentException("不合法的索引");
+                } else {
+                    preNode.next = removeNode.next;
+                }
             }
         }
     }

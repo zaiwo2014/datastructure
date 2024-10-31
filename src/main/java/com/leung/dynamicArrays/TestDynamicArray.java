@@ -1,4 +1,4 @@
-package com.leung.DynamicArrays;
+package com.leung.dynamicArrays;
 
 
 
