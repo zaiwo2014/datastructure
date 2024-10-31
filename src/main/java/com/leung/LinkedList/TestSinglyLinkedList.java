@@ -1,5 +1,6 @@
 package com.leung.LinkedList;
 
+import com.leung.DynamicArrays.DynamicArrayAgain;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -62,5 +63,18 @@ public class TestSinglyLinkedList {
         list.loopWithRecursion();
     }
 
+    @Test
+    public void test5() {
+        DynamicArrayAgain dynamicArrayAgain = new DynamicArrayAgain();
+        for (int i = 0; i < 10; i++) {
+            dynamicArrayAgain.add(i);
+            if (i == 9) {
+                System.out.println(dynamicArrayAgain.capacity);
+            }
+        }
+        for (Integer i : dynamicArrayAgain) {
+            System.out.println(i);
+        }
+    }
 
 }

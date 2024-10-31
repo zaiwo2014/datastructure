@@ -6,7 +6,7 @@ public class DynamicArrayAgain implements Iterable<Integer>{
     
     public int size = 0;//数组中的逻辑大小 决定了添加元素的索引以及所含元素的个数
     
-    private int capacity = 8;   //数组的初始化长度
+    public int capacity = 8;   //数组的初始化长度
     
     private int[] array = {};   //数组的懒惰初始化
 

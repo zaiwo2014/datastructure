@@ -11,12 +11,5 @@ import org.junit.jupiter.api.Test;
  */
 public class getSumByRecursion {
 
-    @Test
-    public void test() {
-        
-    }
     
-    public static Long solution() {
-        
-    }
 }
