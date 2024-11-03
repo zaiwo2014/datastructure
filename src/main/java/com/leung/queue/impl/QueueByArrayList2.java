@@ -8,28 +8,34 @@ import java.util.Iterator;
 /**
  * @author 丨一
  * @version 1.0
- * @title QueueByArrayList
- * @description: 基于链表的环形数组(队列) -> 普通数组作为数组出队时效率比较低 -> 环形数组改造
- * @date 2024/10/31 15:53
+ * @title QueueByArrayList2
+ * @description: 容量标记法 维护一个了逻辑容量
+ * @date 2024/11/3 17:16
  */
-public class QueueByArrayList<E> implements Iterable<E>, Queue<E> {
-    //头尾指针法,尾指针当前指向的地址不能存储数据
-    private final E[] array;
-    private int head = 0;
-    private int tail = 0;
+public class QueueByArrayList2<E> implements Queue<E>,Iterable<E> {
     
-    //定义队列的容量
-    public QueueByArrayList(int capacity) {
-        this.array = (E[]) new Object[capacity + 1];
+    private final E[] array;
+    
+    //从 0 到 (size - 1) 个
+    private int size = 0;
+    
+    private int head = 0;
+    
+    private int tail = 0;
+
+    public QueueByArrayList2(int capacity) {
+        this.array = (E[]) new Object[capacity];
     }
 
     @Override
     public boolean offer(E element) {
         if (isfull()) {
+            System.out.println("队列已满");
             return false;
         } else {
             array[tail] = element;
             tail = (tail + 1) % array.length;
+            size++;
             return true;
         } 
     }
@@ -37,49 +43,52 @@ public class QueueByArrayList<E> implements Iterable<E>, Queue<E> {
     @Override
     public E poll() {
         if (isEmpty()) {
-            throw new RuntimeException("队列为空");
+            System.out.println("队列为空");
+            return null;
         } else {
             E element = array[head];
             head = (head + 1) % array.length;
+            size--;
             return element;
         } 
+        
     }
 
     @Override
     public E peek() {
         if (isEmpty()) {
+            System.out.println("队列为空");
             return null;
+        }else {
+            return array[head];
         }
-        return array[head];
+            
     }
 
     @Override
     public boolean isEmpty() {
-        return head == tail;
+        return size == 0;
     }
 
-    /*
-    判满
-     */
     public boolean isfull() {
-        return (tail + 1) % array.length == head;
+        return size == array.length;
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
-            //维护一个本地标记,使每个迭代器都能独立
-            int thisHead = head;
-            
+            int point = head;
+            int count = 0;
             @Override
             public boolean hasNext() {
-                return thisHead != tail;
+                return count < size;
             }
 
             @Override
             public E next() {
-                E element = array[thisHead];
-                thisHead = (thisHead + 1) % array.length;
+                E element = array[point];
+                point = (point + 1) % array.length;
+                count++;
                 return element;
             }
         };

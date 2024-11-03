@@ -1,6 +1,8 @@
 package com.leung.queue;
 
 
+import com.leung.queue.impl.QueueByArrayList;
+import com.leung.queue.impl.QueueByArrayList2;
 import com.leung.queue.impl.QueueByLinkedList;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +27,21 @@ public class TestQueue {
         queue.offer(5);
         System.out.println(queue.poll());
         System.out.println("-----------------------");
+        Iterator<Integer> iterator = queue.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+
+    @Test
+    void listQueue() {
+        QueueByArrayList2<Integer> queue = new QueueByArrayList2<>(10);
+        int i = 0;
+        while (!queue.isfull()) {
+            queue.offer(i++);
+        }
+        queue.offer(i);
         Iterator<Integer> iterator = queue.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
