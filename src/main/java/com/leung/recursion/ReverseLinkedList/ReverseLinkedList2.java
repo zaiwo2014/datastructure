@@ -1,4 +1,4 @@
-package com.leung.Recursion.ReverseLinkedList;
+package com.leung.recursion.ReverseLinkedList;
 
 import org.junit.jupiter.api.Test;
 
