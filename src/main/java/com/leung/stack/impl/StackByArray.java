@@ -4,7 +4,6 @@ package com.leung.stack.impl;
 import com.leung.stack.Stack;
 
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author 丨一
@@ -13,12 +12,12 @@ import java.util.Set;
  * @description:
  * @date 2024/11/4 20:53
  */
-public class StackByArray<E> implements Stack<E>,Iterable<E> {
-    
+public class StackByArray<E> implements Stack<E>, Iterable<E> {
+
     private int size = 0;
-    
+
     private E[] array;
-    
+
 
     public StackByArray(int capacity) {
         this.array = ((E[]) new Object[capacity]);
@@ -42,7 +41,7 @@ public class StackByArray<E> implements Stack<E>,Iterable<E> {
             return null;
         } else {
             return array[--size];
-        } 
+        }
     }
 
     @Override
@@ -70,7 +69,7 @@ public class StackByArray<E> implements Stack<E>,Iterable<E> {
     public Iterator<E> iterator() {
         return new Iterator<>() {
             private int thisSize = size;
-            
+
             @Override
             public boolean hasNext() {
                 return thisSize > 0;

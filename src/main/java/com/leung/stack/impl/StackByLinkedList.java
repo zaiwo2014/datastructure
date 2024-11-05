@@ -12,11 +12,11 @@ import java.util.Iterator;
  * @description: 基于单向链表实现的栈 -> 每次都往head的下个节点添加元素,就能实现后进先出
  * @date 2024/11/4 18:17
  */
-public class StackByLinkedList<E> implements Stack<E>,Iterable<E> {
-    
+public class StackByLinkedList<E> implements Stack<E>, Iterable<E> {
+
+    private final Node<E> head = new Node<>(null, null);
     private int capacity;
     private int size;
-    private final Node<E> head = new Node<>(null, null);
 
     public StackByLinkedList(int capacity) {
         this.capacity = capacity;
@@ -67,7 +67,7 @@ public class StackByLinkedList<E> implements Stack<E>,Iterable<E> {
     public Iterator<E> iterator() {
         return new Iterator<>() {
             private Node<E> thisHead = head;
-            
+
             @Override
             public boolean hasNext() {
                 return thisHead.nextNode != null;
